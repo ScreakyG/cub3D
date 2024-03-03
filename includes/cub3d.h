@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/03 18:02:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/03 20:48:15 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,16 @@
 # include "../includes/Color.h"
 
 
+
 typedef struct s_data
 {
 	char **map_tab;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
 }	t_data;
 
 /////// FREE FUNCTIONS ///////
@@ -36,12 +43,19 @@ typedef struct s_data
 void ft_exit_error(char *msg, int exit_code, t_data *data);
 
 
+/////// CHECK MAP FUNCTIONS ///////
+
 void check_map_validity(int argc, char **argv, t_data *data);
+
+/////// PARSE FUNCTIONS ///////
+
+void parse_map(t_data *data);
 
 /////// UTILS FUNCTIONS ///////
 
 int	get_number_lines(char *map_arg);
 void print_map(t_data *data);
+void print_identifiers(t_data *data);
 void free_strs(char **strs);
 
 #endif

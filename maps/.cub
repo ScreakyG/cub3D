@@ -1,0 +1,8 @@
+NO ./textures/wall.xpm caca
+SO ./textures/sol.xpm
+
+EA ./textures/sol2.xpm
+WE
+
+F 220,100,0
+

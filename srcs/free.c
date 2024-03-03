@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/03 18:23:33 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:02:05 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ void free_strs(char **strs)
 	free(strs);
 }
 
+void free_identifiers(t_data *data)
+{
+	if (data->c)
+		free(data->c);
+	if (data->ea)
+		free(data->ea);
+	if (data->f)
+		free(data->f);
+	if (data->no)
+		free(data->no);
+	if (data->so)
+		free(data->so);
+	if (data->we)
+		free(data->we);
+}
+
 void ft_exit_error(char *msg, int exit_code, t_data *data)
 {
 	printf("Error\n");
@@ -34,10 +50,8 @@ void ft_exit_error(char *msg, int exit_code, t_data *data)
 	if (data != NULL)
 	{
 		if (data->map_tab)
-		{
 			free_strs(data->map_tab);
-			printf("Freed data->map_tab memory\n");
-		}
+		free_identifiers(data);
 	}
 	exit(exit_code);
 }

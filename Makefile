@@ -14,7 +14,7 @@ EOC = \033[0m
 
 
 SRCS_DIR = srcs/
-SRCS_FILES = main.c map_check.c free.c utils.c
+SRCS_FILES = main.c map_check.c free.c utils.c parse_map.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 SRCS_OBJS = $(SRCS:.c=.o)
 
