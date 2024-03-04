@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/04 17:20:19 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:34:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct s_data
 {
 	char **map_tab;
+	int		idx_map;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -47,10 +48,14 @@ void ft_exit_error(char *msg, int exit_code, t_data *data);
 
 void check_map_validity(int argc, char **argv, t_data *data);
 
-/////// PARSE FUNCTIONS ///////
+/////// PARSE IDENTIFIERS FUNCTIONS ///////
 
 void parse_identifiers(t_data *data);
 bool enough_identifiers(t_data *data);
+
+/////// PARSE MAP FUNCTIONS ///////
+
+void parse_map(t_data *data);
 
 /////// UTILS FUNCTIONS ///////
 

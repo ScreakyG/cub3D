@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:04 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/04 17:21:37 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:37:41 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	check_map_validity(int argc, char **argv, t_data *data)
 	check_file_extension(argv);
 	get_map(argv[1], data);
 	parse_identifiers(data);
+	parse_map(data);
 
 
-	print_identifiers(data);
+	//print_identifiers(data);
 	//print_map(data);
 }
