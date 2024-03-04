@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:25:53 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/04 16:49:13 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:21:13 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool enough_identifiers(t_data *data)
 	return (true);
 }
 
-void parse_map(t_data *data)
+void parse_identifiers(t_data *data)
 {
 	int	i;
 	int	j;
@@ -123,4 +123,6 @@ void parse_map(t_data *data)
 		free(value);
 		i++;
 	}
+	if (enough_identifiers(data) == false)
+		ft_exit_error("You need to define SO, NO, WE, EA, F and C", 1, data);
 }
