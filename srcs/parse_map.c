@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:25:53 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/03 21:25:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:49:13 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,23 @@ static void add_value_to_identifier(char *value, char *identifier, t_data *data)
 	}
 }
 
+bool enough_identifiers(t_data *data)
+{
+	if (data->no == NULL)
+		return (false);
+	if (data->so == NULL)
+		return (false);
+	if (data->we == NULL)
+		return (false);
+	if (data->ea == NULL)
+		return (false);
+	if (data->f == NULL)
+		return (false);
+	if (data->c == NULL)
+		return (false);
+	return (true);
+}
+
 void parse_map(t_data *data)
 {
 	int	i;
@@ -66,7 +83,7 @@ void parse_map(t_data *data)
 
 	j = 0;
 	i = 0;
-	while (data->map_tab[i])
+	while (data->map_tab[i] && enough_identifiers(data) == false)
 	{
 		j = 0;
 		while (data->map_tab[i] && data->map_tab[i][j] == '\0')
@@ -76,7 +93,10 @@ void parse_map(t_data *data)
 		if (data->map_tab[i] == NULL)
 			break ;
 		if (data->map_tab[i] && data->map_tab[i][j] == '\0')
+		{
+			i++;
 			continue ;
+		}
 		word_start = j;
 		while (data->map_tab[i][j] && data->map_tab[i][j] != ' ')
 			j++;
