@@ -6,11 +6,24 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:04 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/04 17:37:41 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:44:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static bool is_directory(char *filename)
+{
+	int	tmp_fd;
+
+	tmp_fd = open(filename, __O_DIRECTORY);
+	if (tmp_fd >= 0)
+	{
+		close (tmp_fd);
+		return (true);
+	}
+	return (false);
+}
 
 static void get_map(char *map_arg, t_data *data)
 {
@@ -19,7 +32,7 @@ static void get_map(char *map_arg, t_data *data)
 	int		i;
 
 	i = 0;
-	map_fd = open(map_arg, O_RDONLY); // Reverifier le comportement avec un dossier "maps.cub"
+	map_fd = open(map_arg, O_RDONLY);
 	if (map_fd == -1)
 		ft_exit_error(strerror(errno), errno, NULL); //Data ne contient rien de malloc a ce stade.
 	data->map_tab = malloc((get_number_lines(map_arg) + 1) * sizeof(char *));
@@ -52,6 +65,8 @@ static void	check_file_extension(char **argv)
 	end -= 4;
 	if (ft_strncmp(&argv[1][end], ".cub", ft_strlen(&argv[1][end])))
 		ft_exit_error("Error with map extension, use .cub extension", 1, NULL);
+	if (is_directory(argv[1]))
+		ft_exit_error("Map file is a directory", 1, NULL);
 }
 
 void	check_map_validity(int argc, char **argv, t_data *data)
