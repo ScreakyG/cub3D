@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 03:06:17 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 04:06:23 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int	get_number_lines(char *map_arg);
 void print_map(t_data *data);
 void print_identifiers(t_data *data);
 void free_strs(char **strs);
+int	str_len_skip_ws(char *str);
 
 #endif

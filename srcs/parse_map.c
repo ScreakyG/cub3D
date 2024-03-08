@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:30:34 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 03:32:50 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 04:07:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,27 @@ static bool verify_left_side(t_data *data)
 	return (true);
 }
 
+static bool verify_right_side(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = data->idx_map_start + 1;
+	while (data->map_tab[i] && i < data->idx_map_end)
+	{
+		j = ft_strlen(data->map_tab[i]);
+		j--;
+		while (data->map_tab[i][j] && (data->map_tab[i][j] == ' ' || data->map_tab[i][j] == '\t' || data->map_tab[i][j] == '\r'))
+			j--;
+		if (j == str_len_skip_ws(data->map_tab[i]))
+			return (false);
+		if (data->map_tab[i][j] != '1')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 void skip_white_lines(t_data *data)
 {
 	int	i;
@@ -110,9 +131,11 @@ void check_if_closed_map(t_data *data)
 {
 	if (data->idx_map_end - data->idx_map_start < 3)//verifier si la map fait au moins 3 lignes.
 		ft_exit_error("Map miniumum size is 3 lines", 1, data);
-	if (verify_top_line(data->map_tab[data->idx_map_start]) == false)
+	if (verify_top_line(data->map_tab[data->idx_map_start]) == false) //Espaces apres la topline non geres.
 		ft_exit_error("Top of map not closed", 1, data);
 	if (verify_left_side(data) == false)
+		ft_exit_error("Sides not closed", 1, data);
+	if (verify_right_side(data) == false)
 		ft_exit_error("Sides not closed", 1, data);
 }
 

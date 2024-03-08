@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 17:34:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/03 20:48:02 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 04:09:06 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,16 @@ int	get_number_lines(char *map_arg)
 	}
 	close (map_fd);
 	return (number);
+}
+
+int	str_len_skip_ws(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[i])
+		return (0);
+	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
+		i++;
+	return (i);
 }
