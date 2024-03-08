@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:30:34 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 02:54:40 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:32:50 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static bool verify_left_side(t_data *data)
 	int	i;
 	int	j;
 
-	i = data->idx_map + 1;
-	while (data->map_tab[i])
+	i = data->idx_map_start + 1;
+	while (data->map_tab[i] && i < data->idx_map_end)
 	{
 		j = 0;
 		while (data->map_tab[i][j] && (data->map_tab[i][j] == ' ' || data->map_tab[i][j] == '\t' || data->map_tab[i][j] == '\r'))
@@ -84,7 +84,7 @@ void skip_white_lines(t_data *data)
 	int	i;
 	int	j;
 
-	i = data->idx_map;
+	i = data->idx_map_start;
 	while (data->map_tab[i])
 	{
 		j = 0;
@@ -101,18 +101,40 @@ void skip_white_lines(t_data *data)
 	}
 	if (data->map_tab[i] == NULL)
 		ft_exit_error("There is no map", 1, data);
-	data->idx_map = i;
+	data->idx_map_start = i;
 }
 
 
 
 void check_if_closed_map(t_data *data)
 {
-	//verifier si la map fait au moins 3 lignes.
-	if (verify_top_line(data->map_tab[data->idx_map]) == false)
+	if (data->idx_map_end - data->idx_map_start < 3)//verifier si la map fait au moins 3 lignes.
+		ft_exit_error("Map miniumum size is 3 lines", 1, data);
+	if (verify_top_line(data->map_tab[data->idx_map_start]) == false)
 		ft_exit_error("Top of map not closed", 1, data);
 	if (verify_left_side(data) == false)
 		ft_exit_error("Sides not closed", 1, data);
+}
+
+void get_map_end_idx(t_data *data)
+{
+	int	end;
+	int	j;
+
+	end = 0;
+	while (data->map_tab[data->idx_map_start + end])
+		end++;
+	end = data->idx_map_start + end - 1;
+	while (data->map_tab[end])
+	{
+		j = 0;
+		while (data->map_tab[end][j] && (data->map_tab[end][j] == ' ' || data->map_tab[end][j] == '\t' || data->map_tab[end][j] == '\r'))
+			j++;
+		if (data->map_tab[end][j] != '\0')
+			break ;
+		end--;
+	}
+	data->idx_map_end = end + 1; // Index juste derriere la derniere ligne de map.
 }
 
 void parse_map(t_data *data)
@@ -120,12 +142,13 @@ void parse_map(t_data *data)
 	int	i;
 
 	skip_white_lines(data);
-	i = data->idx_map;
+	i = data->idx_map_start;
 	while (data->map_tab[i])
 	{
 		if (characters_check(data->map_tab[i]) == false)
 			ft_exit_error("Invalid characters in map", 1, data);
 		i++;
 	}
+	get_map_end_idx(data);
 	check_if_closed_map(data);
 }

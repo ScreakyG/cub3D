@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:25:53 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/04 17:36:52 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:00:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,5 @@ void parse_identifiers(t_data *data)
 	}
 	if (enough_identifiers(data) == false)
 		ft_exit_error("You need to define SO, NO, WE, EA, F and C", 1, data);
-	data->idx_map = i;
+	data->idx_map_start = i;
 }

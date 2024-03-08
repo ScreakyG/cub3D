@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 02:26:12 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:06:17 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 typedef struct s_data
 {
 	char **map_tab;
-	int		idx_map;
+	int		idx_map_start;
+	int		idx_map_end;
 	int		height;
 	int		width;
 	char	*no;
