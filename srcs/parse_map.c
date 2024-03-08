@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:30:34 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 04:07:44 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 05:18:10 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,28 @@ static bool characters_check(char *str)
 static bool verify_top_line(char *str)
 {
 	int	i;
+	int	wall_nb;
 
 	i = 0;
+	wall_nb = 0;
 	if (!str || !str[i])
 		return (false);
 	while (str[i])
 	{
 		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
 			i++;
-		if (str[i] != '1')
+		if (str[i] == '1')
+			wall_nb++;
+		else if (str[i] == '\0' && wall_nb > 1)
+			return (true);
+		else if (str[i] != '1')
 			return (false);
 		i++;
 	}
-	return (true);
+	if (wall_nb > 1)
+		return (true);
+	else
+		return (false);
 }
 
 static bool verify_left_side(t_data *data)
@@ -137,6 +146,8 @@ void check_if_closed_map(t_data *data)
 		ft_exit_error("Sides not closed", 1, data);
 	if (verify_right_side(data) == false)
 		ft_exit_error("Sides not closed", 1, data);
+	// if (verify_bottom_line(data) == false)
+	// 	ft_exit_error("Bottom of map not closed", 1, data);
 }
 
 void get_map_end_idx(t_data *data)
