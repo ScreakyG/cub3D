@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/07 18:56:39 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/08 02:26:12 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ bool enough_identifiers(t_data *data);
 /////// PARSE MAP FUNCTIONS ///////
 
 void parse_map(t_data *data);
+void skip_white_lines(t_data *data);
+void check_if_closed_map(t_data *data);
 
 /////// UTILS FUNCTIONS ///////
 
