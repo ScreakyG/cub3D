@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 04:06:23 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:44:12 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct s_data
 {
 	char **map_tab;
+	char **map_grid;
 	int		idx_map_start;
 	int		idx_map_end;
 	int		height;
@@ -61,6 +62,7 @@ bool enough_identifiers(t_data *data);
 void parse_map(t_data *data);
 void skip_white_lines(t_data *data);
 void check_if_closed_map(t_data *data);
+void create_map_grid(t_data *data);
 
 /////// UTILS FUNCTIONS ///////
 
@@ -69,5 +71,6 @@ void print_map(t_data *data);
 void print_identifiers(t_data *data);
 void free_strs(char **strs);
 int	str_len_skip_ws(char *str);
+void print_grid(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 17:34:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/08 04:09:06 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:44:16 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,18 @@ int	get_number_lines(char *map_arg)
 	}
 	close (map_fd);
 	return (number);
+}
+
+void print_grid(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->map_grid[i])
+	{
+		printf("%s\n", data->map_grid[i]);
+		i++;
+	}
 }
 
 int	str_len_skip_ws(char *str)

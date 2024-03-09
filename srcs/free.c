@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/03 21:02:05 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:49:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void ft_exit_error(char *msg, int exit_code, t_data *data)
 	{
 		if (data->map_tab)
 			free_strs(data->map_tab);
+		if (data->map_grid)
+			free_strs(data->map_grid);
 		free_identifiers(data);
 	}
 	exit(exit_code);
