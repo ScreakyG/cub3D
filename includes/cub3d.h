@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/09 16:44:12 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:35:17 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 300
 
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+}	t_mlx;
 
 typedef struct s_data
 {
+	t_mlx	mlx;
 	char **map_tab;
 	char **map_grid;
 	int		idx_map_start;
@@ -51,6 +59,11 @@ void ft_exit_error(char *msg, int exit_code, t_data *data);
 /////// CHECK MAP FUNCTIONS ///////
 
 void check_map_validity(int argc, char **argv, t_data *data);
+bool is_directory(char *filename);
+
+/////// CHECK TEXTURES FUNCTIONS ///////
+
+void verify_textures(t_data *data);
 
 /////// PARSE IDENTIFIERS FUNCTIONS ///////
 
@@ -64,6 +77,14 @@ void skip_white_lines(t_data *data);
 void check_if_closed_map(t_data *data);
 void create_map_grid(t_data *data);
 
+/////// INIT TEXTURES FUNCTIONS ///////
+
+void init_textures(t_data *data);
+
+/////// INIT MLX FUNCTIONS ///////
+
+void init_mlx(t_data *data);
+
 /////// UTILS FUNCTIONS ///////
 
 int	get_number_lines(char *map_arg);
@@ -72,5 +93,6 @@ void print_identifiers(t_data *data);
 void free_strs(char **strs);
 int	str_len_skip_ws(char *str);
 void print_grid(t_data *data);
+int	get_player_number(t_data *data);
 
 #endif

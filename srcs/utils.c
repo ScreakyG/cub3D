@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 17:34:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/09 16:44:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:42:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,28 @@ int	str_len_skip_ws(char *str)
 	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
 		i++;
 	return (i);
+}
+
+int	get_player_number(t_data *data)
+{
+	int	y;
+	int	x;
+	int	count;
+
+	y = 0;
+	count = 0;
+	if (!data->map_grid)
+		return (0);
+	while (data->map_grid[y])
+	{
+		x = 0;
+		while (data->map_grid[y][x])
+		{
+			if (data->map_grid[y][x] == 'N' || data->map_grid[y][x] == 'W' || 		data->map_grid[y][x] == 'S' ||data->map_grid[y][x] == 'E')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	return (count);
 }

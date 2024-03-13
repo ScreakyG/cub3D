@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:01:10 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/09 16:48:09 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:01:07 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,4 @@ void create_map_grid(t_data *data)
 	trim_spaces(data);
 	get_map_width(data);
 	malloc_grid(data);
-	//print_grid(data);
 }

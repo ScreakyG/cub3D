@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/09 16:49:09 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:21:35 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ void ft_exit_error(char *msg, int exit_code, t_data *data)
 		if (data->map_grid)
 			free_strs(data->map_grid);
 		free_identifiers(data);
+		if (data->mlx.mlx_win)
+			mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
+		if (data->mlx.mlx_ptr)
+		{
+			mlx_destroy_display(data->mlx.mlx_ptr);
+			free(data->mlx.mlx_ptr);
+		}
 	}
 	exit(exit_code);
 }

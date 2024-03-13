@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:04 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/07 19:44:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:43:04 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static bool is_directory(char *filename)
+bool is_directory(char *filename)
 {
 	int	tmp_fd;
 
@@ -77,8 +77,14 @@ void	check_map_validity(int argc, char **argv, t_data *data)
 	get_map(argv[1], data);
 	parse_identifiers(data);
 	parse_map(data);
-
+	if (get_player_number(data) != 1)
+		ft_exit_error("There should be one player in the map", 1, data);
+	verify_textures(data);
 
 	//print_identifiers(data);
 	//print_map(data);
+	//print_grid(data);
+	
+
+	//Verifier que F et C ont bien des ints compris entre 0 et 255 et que la couleur est valide ? Convertir couleurs rgb vers hex.
 }
