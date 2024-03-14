@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/13 18:35:17 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:37:51 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,7 @@ void free_strs(char **strs);
 int	str_len_skip_ws(char *str);
 void print_grid(t_data *data);
 int	get_player_number(t_data *data);
+int	tab_len(char **tab);
+bool only_digit(char *str);
 
 #endif

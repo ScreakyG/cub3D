@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 17:34:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/13 17:42:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:37:43 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,28 @@ int	get_player_number(t_data *data)
 		y++;
 	}
 	return (count);
+}
+
+int	tab_len(char **tab)
+{
+	int	len;
+
+	len = 0;
+	while (tab[len])
+		len++;
+	return (len);
+}
+
+bool only_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

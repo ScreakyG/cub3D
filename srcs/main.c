@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/13 01:03:32 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:54:45 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int main(int argc, char **argv)
 	check_map_validity(argc, argv, &data); // choses a verifier.
 	//verifier la resolution, le fov , speed , la position du joueur.
 	init_mlx(&data);
-	init_textures(&data);
+	//init_textures(&data);
 	ft_exit_error("ALL GOOD", 0, &data);
 }
