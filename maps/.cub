@@ -1,4 +1,4 @@
-NO ./textures/wall.xpm caca
+NO ./textures/wall.xpm
 SO ./textures/sol.xpm
 EA ./textures/sol2.xpm
 WE ./textures/sol2.xpm
@@ -8,6 +8,6 @@ F 220,100,0
 C 225,30,0
 
 11111111
-10001111
+1001111
 1001N011
 11111111

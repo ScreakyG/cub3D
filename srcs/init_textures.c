@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:02:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/14 14:51:43 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:44:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@
 // {
 // 	print_identifiers(data);
 // 	init_walls(data);
+//	init_floor_ceiling_colors(data); convertion rgb vers hex		
 // }

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:04 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/13 18:43:04 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:36:10 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,11 @@ void	check_map_validity(int argc, char **argv, t_data *data)
 	parse_map(data);
 	if (get_player_number(data) != 1)
 		ft_exit_error("There should be one player in the map", 1, data);
-	verify_textures(data);
+	verify_textures(data); // Bien verifier cas d'erreurs des couleurs du ceiling et du floor avec le parsing des nombres.
 
 	//print_identifiers(data);
 	//print_map(data);
-	//print_grid(data);
+	print_grid(data);
 	
-
 	//Verifier que F et C ont bien des ints compris entre 0 et 255 et que la couleur est valide ? Convertir couleurs rgb vers hex.
 }
