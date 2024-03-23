@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:25:53 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/21 23:30:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:06:30 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,13 @@ void parse_identifiers(t_data *data)
 			continue ;
 		}
 		word_start = j;
-		while (data->map_tab[i][j] && data->map_tab[i][j] != ' ') //Rajouter \t et \r
+		while (data->map_tab[i][j] && (data->map_tab[i][j] != ' ' && data->map_tab[i][j] != '\t' && data->map_tab[i][j] != '\r')) //Rajouter \t et \r
 			j++;
 		word = ft_substr(data->map_tab[i], word_start, j - word_start);
 		if (word_is_identifier(word, data) == false)
-		{
-			printf("Identifier : %s\n" , word); // Que se passe t'il si word est NULL
-			free(word);
-			ft_exit_error("Unknown identifier", 1, data);
-		}
-		if (data->map_tab[i][j] == '\0' || data->map_tab[i][j + 1] == '\0') //Changer et check si tout la ligne est pas vide.
-		{
-			printf ("Identifier : %s\n", word);
-			free(word);
-			ft_exit_error("No value", 1, data);
-		}
+			error_identifier_name(word, data);
+		if (data->map_tab[i][j] == '\0' || is_empty(&data->map_tab[i][j]))
+			error_identifier_value(word, data);
 		j++; // Avancer apres l'espace de l'identifiant
 		value_start = j;
 		while (data->map_tab[i][j])

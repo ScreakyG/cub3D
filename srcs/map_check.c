@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:04 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/21 21:36:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:28:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	check_map_validity(int argc, char **argv, t_data *data)
 
 	//print_identifiers(data);
 	//print_map(data);
-	print_grid(data);
-	
-	//Verifier que F et C ont bien des ints compris entre 0 et 255 et que la couleur est valide ? Convertir couleurs rgb vers hex.
+	//print_grid(data);
+
+	//Convertir couleurs rgb vers hex.
 }

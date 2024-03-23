@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 17:34:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/14 14:37:43 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:06:01 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,34 @@ bool only_digit(char *str)
 		i++;
 	}
 	return (true);
+}
+
+bool is_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (true);
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\r')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+void error_identifier_name(char *identifier, t_data *data)
+{
+	printf(RED"Unknown identifier : %s\n"RESET, identifier);
+	free(identifier);
+	ft_exit_error("", 1, data);
+}
+
+void error_identifier_value(char *identifier, t_data *data)
+{
+	printf(RED"No value for identifier : %s\n"RESET, identifier);
+	free(identifier);
+	ft_exit_error("", 1, data);
 }

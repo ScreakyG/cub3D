@@ -6,16 +6,17 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/14 14:54:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:52:11 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+
 int main(int argc, char **argv)
 {
 	t_data data;
-	
+
 	data.map_tab = NULL;
 	data.map_grid = NULL;
 	data.idx_map_start = 0;
