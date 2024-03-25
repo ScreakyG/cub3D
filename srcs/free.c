@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/11 21:21:35 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/25 09:46:16 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,25 @@ void ft_exit_error(char *msg, int exit_code, t_data *data)
 		}
 	}
 	exit(exit_code);
+}
+
+void clean_exit(t_data *data)
+{
+	printf(GREEN"Exiting cub3D and cleaning memory\n"RESET);
+	if (data)
+	{
+		if (data->map_tab)
+			free_strs(data->map_tab);
+		if (data->map_grid)
+			free_strs(data->map_grid);
+		free_identifiers(data);
+		if (data->mlx.mlx_win)
+			mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
+		if (data->mlx.mlx_ptr)
+		{
+			mlx_destroy_display(data->mlx.mlx_ptr);
+			free(data->mlx.mlx_ptr);
+		}
+	}
+	exit(0);
 }
