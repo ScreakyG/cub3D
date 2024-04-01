@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 02:50:38 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:13:27 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	game_loop(void *data)
 
 	render_background(data_ptr, &img);
 	movements(data_ptr);
-	//cast_rays;
+
+	cast_all_rays(data_ptr);
+
 	render_minimap(data_ptr, &img);
 	render_player(data_ptr, &img);
 

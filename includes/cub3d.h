@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 03:53:13 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:59:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # include <string.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <limits.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 1500
+# define WIN_HEIGHT 800
 
  #ifndef M_PI
 	# define M_PI 3.13159265
@@ -38,6 +39,20 @@
 # define TILE_SIZE 32
 # define FOV 60
 # define NUM_RAYS WIN_WIDTH
+
+typedef struct s_ray
+{
+	float ray_angle;
+	float wall_hit_x;
+	float wall_hit_y;
+	float distance;
+	int		is_ray_facing_up;
+	int		is_ray_facing_down;
+	int		is_ray_facing_left;
+	int		is_ray_facing_right;
+	int		hit_content;
+	bool	was_hit_vertical;
+} t_ray;
 
 typedef struct s_map
 {
@@ -81,6 +96,7 @@ typedef struct s_data
 	t_img	*img;
 	t_player player;
 	t_map	map;
+	t_ray	*rays;
 	char **map_tab;
 	char **map_grid;
 	int		idx_map_start;
@@ -149,6 +165,15 @@ int handle_keypress(int keycode, void *data);
 int handle_keyrelease(int keycode, void *data);
 void movements(t_data *data);
 
+////// RAYCASTING FUNCTIONS ////////
+
+void cast_all_rays(t_data *data);
+void cast_ray(t_ray *ray, t_data *data);
+float normalize_angle(float ray_angle);
+void init_ray_directions(t_ray *ray);
+float get_distance(float x1, float y1, float x2, float y2);
+void init_ray(t_ray *ray);
+bool map_has_wall_hat(float x, float y, t_data *data);
 
 ////// RENDER FUNCTIONS ////////
 

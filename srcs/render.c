@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:36:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 02:05:01 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:11:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,39 @@ void render_background(t_data *data, t_img *img)
 	}
 }
 
-static void render_cells(t_img *img, int pos_x, int pos_y, int color, float scale_factor)
-{
-	int	i;
-	int	j;
+// static void render_cells(t_img *img, int pos_x, int pos_y, int color, float scale_factor)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (i < scale_factor)
+// 	i = 0;
+// 	while (i < scale_factor)
+// 	{
+// 		j = 0;
+// 		while (j < scale_factor)
+// 		{
+// 			my_mlx_pixel_put(img, pos_x + j, pos_y + i, color);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+static void render_grid_cells(t_img *img, int pos_x, int pos_y, int color, float x_scale, float y_scale)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < y_scale)
 	{
-		j = 0;
-		while (j < scale_factor)
+		x = 0;
+		while (x < x_scale)
 		{
-			my_mlx_pixel_put(img, pos_x + j, pos_y + i, color);
-			j++;
+			my_mlx_pixel_put(img, pos_x + x, pos_y + y, color);
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
@@ -78,20 +96,19 @@ void render_minimap(t_data *data, t_img *img)
 	int tile_y;
 	int	cell_color;
 
-	//float scale_factor = fmin(WIN_WIDTH / (float)(data->width * TILE_SIZE), WIN_HEIGHT / (float)(data->height * TILE_SIZE)) * MINIMAP_SCALE;
 	y = 0;
 	while (y < data->height)
 	{
 		x = 0;
 		while (x < data->width)
 		{
-			tile_x = x * TILE_SIZE * MINIMAP_SCALE;
-			tile_y = y * TILE_SIZE * MINIMAP_SCALE;
+			tile_x = x * ((WIN_WIDTH / data->width) * MINIMAP_SCALE);
+			tile_y = y * ((WIN_HEIGHT / data->height) * MINIMAP_SCALE);
 			if (data->map_grid[y][x] == '1')
 				cell_color = 0x000000;
 			else if (data->map_grid[y][x] == '0')
 				cell_color = 0xFFFFFF;
-			render_cells(img, tile_x, tile_y, cell_color, TILE_SIZE * MINIMAP_SCALE);
+			render_grid_cells(img, tile_x, tile_y, cell_color, ((WIN_WIDTH / data->width) * MINIMAP_SCALE), ((WIN_HEIGHT / data->height) * MINIMAP_SCALE));
 			x++;
 		}
 		y++;
@@ -113,22 +130,48 @@ static void draw_line(t_img *img, int x0, int y0, int x1, int y1, int color)
     }
 }
 
+// void render_player(t_data *data, t_img *img)
+// {
+// 	int	color;
+
+// 	color = 0xFE0000;
+// 	int player_x_pix;
+// 	int player_y_pix;
+// 	int	end_x;
+// 	int	end_y;
+
+// 	player_x_pix = data->player.x * MINIMAP_SCALE;
+// 	player_y_pix = data->player.y * MINIMAP_SCALE;
+// 	render_cells(img, player_x_pix, player_y_pix, color, data->player.width * MINIMAP_SCALE);
+
+// 	end_x = MINIMAP_SCALE * data->player.x + cos(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
+// 	end_y = MINIMAP_SCALE * data->player.y + sin(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
+// 	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, color);
+
+// }
+
 void render_player(t_data *data, t_img *img)
 {
-	int	color;
+	float player_x_pix;
+	float player_y_pix;
+	float	end_x;
+	float	end_y;
 
-	color = 0xFE0000;
-	int player_x_pix;
-	int player_y_pix;
-	int	end_x;
-	int	end_y;
 
-	player_x_pix = data->player.x * MINIMAP_SCALE;
-	player_y_pix = data->player.y * MINIMAP_SCALE;
-	render_cells(img, player_x_pix, player_y_pix, color, data->player.width * MINIMAP_SCALE);
+	int	x_cell_scale = WIN_WIDTH / data->width;
+	int y_cell_scale = WIN_HEIGHT / data->height;
 
-	end_x = MINIMAP_SCALE * data->player.x + cos(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
-	end_y = MINIMAP_SCALE * data->player.y + sin(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
-	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, color);
+	float player_pos_x = data->player.x / TILE_SIZE;
+	float player_pos_y = data->player.y / TILE_SIZE;
+
+	player_x_pix = ((player_pos_x * x_cell_scale)) * MINIMAP_SCALE;
+	player_y_pix = ((player_pos_y * y_cell_scale)) * MINIMAP_SCALE;
+
+	render_grid_cells(img, player_x_pix, player_y_pix, 0xFE0000, 10 * MINIMAP_SCALE, 10 * MINIMAP_SCALE);
+
+
+	end_x = player_x_pix + cos(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
+	end_y = player_y_pix + sin(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
+	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, 0xFE0000);
 
 }

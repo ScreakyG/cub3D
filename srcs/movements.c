@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:38:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 03:55:18 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:39:29 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,26 @@ void movements(t_data *data)
 	move_x = data->player.x;
 	move_y = data->player.y;
 	data->player.rotation_angle += data->player.rotation_direction * data->player.turn_speed;
-
+	data->player.rotation_angle = normalize_angle(data->player.rotation_angle);
 	if (data->player.walk_direction == 1 || data->player.walk_direction == -1)
 	{
 		move_step = data->player.walk_direction * data->player.walk_speed;
 		move_x = data->player.x + cos(data->player.rotation_angle) * move_step;
 		move_y = data->player.y + sin(data->player.rotation_angle) * move_step;
 	}
-	else if (data->player.side_direction == 1 || data->player.side_direction == -1)
+	if (data->player.side_direction == 1)
 	{
-		move_step = data->player.side_direction * data->player.walk_speed;
-		move_x = data->player.x + sin(data->player.rotation_angle) * move_step;
-		move_y = data->player.y + cos(data->player.rotation_angle) * move_step;
+		move_x = data->player.x + -sin(data->player.rotation_angle) * data->player.walk_speed;
+		move_y = data->player.y + cos(data->player.rotation_angle) * data->player.walk_speed;
 	}
-	//Check collisions
+	if (data->player.side_direction == -1)
+	{
+		move_x = data->player.x + sin(data->player.rotation_angle) * data->player.walk_speed;
+		move_y = data->player.y + -cos(data->player.rotation_angle) * data->player.walk_speed;
+	}
 	if (!wall_colision(data, move_x, move_y))
 	{
 		data->player.x = move_x;
 		data->player.y = move_y;
 	}
-
 }
