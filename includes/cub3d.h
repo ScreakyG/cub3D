@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/25 09:45:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/01 03:53:13 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,49 @@
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
-# define WIN_WIDTH 600
-# define WIN_HEIGHT 300
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
+
+ #ifndef M_PI
+	# define M_PI 3.13159265
+ #endif
+# define TWO_PI 6.28318530
+
+# define MINIMAP_SCALE 1
+
+# define TILE_SIZE 32
+# define FOV 60
+# define NUM_RAYS WIN_WIDTH
+
+typedef struct s_map
+{
+	int player_pos_y;
+	int player_pos_x;
+} t_map;
+
+typedef struct s_player
+{
+	float fov_rd; // PLAYER FOV IN RADIANT
+	float x; // POSITION X OF PLAYER IN PIXEL
+	float y; // POSITION Y OF PLAYER IN PIXEL
+	float width; // WIDTH OF PLAYER IN MINIMAP
+	float height; // HEIGHT OF PLAYER IN MINIMAP
+	int rotation_direction; // -1 for left , +1 for right
+	int walk_direction; // -1 for back , +1 for front
+	int	side_direction; // -1 for left, +1 for right
+	float rotation_angle; // START ROTATION ANGLE
+	float walk_speed; // MOVE SPEED IN PIXELS
+	float turn_speed; // RADIANT PER SECOND WE RORATE
+} t_player;
+
+typedef struct s_img
+{
+	void 	*img;
+	char 	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+} t_img;
 
 typedef struct s_mlx
 {
@@ -37,6 +78,9 @@ typedef struct s_mlx
 typedef struct s_data
 {
 	t_mlx	mlx;
+	t_img	*img;
+	t_player player;
+	t_map	map;
 	char **map_tab;
 	char **map_grid;
 	int		idx_map_start;
@@ -86,6 +130,10 @@ void init_textures(t_data *data);
 int rgb_to_hex(int red, int green, int blue);
 void init_floor_ceiling_colors(t_data *data);
 
+///// INIT PLAYER FUNCTIONS ///////
+
+void init_player(t_data *data);
+
 /////// INIT MLX FUNCTIONS ///////
 
 void init_mlx(t_data *data);
@@ -98,6 +146,16 @@ int		game_loop(void *data);
 /////// KEYBINDS FUNCTIONS ///////
 
 int handle_keypress(int keycode, void *data);
+int handle_keyrelease(int keycode, void *data);
+void movements(t_data *data);
+
+
+////// RENDER FUNCTIONS ////////
+
+void my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void render_background(t_data *data, t_img *img);
+void render_minimap(t_data *data, t_img *img);
+void render_player(t_data *data, t_img *img);
 
 /////// UTILS FUNCTIONS ///////
 
@@ -113,5 +171,7 @@ bool only_digit(char *str);
 bool is_empty(char *str);
 void error_identifier_name(char *identifier, t_data *data);
 void error_identifier_value(char *identifier, t_data *data);
+int	get_player_pos(t_data *data, char axis);
+bool wall_colision(t_data *data, float x_step , float y_step);
 
 #endif

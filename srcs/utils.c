@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 17:34:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/23 19:06:01 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:55:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,4 +161,32 @@ void error_identifier_value(char *identifier, t_data *data)
 	printf(RED"No value for identifier : %s\n"RESET, identifier);
 	free(identifier);
 	ft_exit_error("", 1, data);
+}
+
+int	get_player_pos(t_data *data, char axis)
+{
+	int	x;
+	int	y;
+	char **map_grid;
+
+	y = 0;
+	map_grid = data->map_grid;
+
+	while (y < data->height)
+	{
+		x = 0;
+		while (x < data->width)
+		{
+			if (map_grid[y][x] == 'N' || map_grid[y][x] == 'S' || map_grid[y][x] == 'W' || map_grid[y][x] == 'E')
+			{
+				if (axis == 'x')
+					return (x);
+				else if (axis == 'y')
+					return (y);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }

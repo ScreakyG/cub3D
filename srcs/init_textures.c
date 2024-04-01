@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:02:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/25 09:34:05 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:38:25 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 // 	// Voir mcombeau
 // 	// Creer une structure t_img
 // }
+
 
 int rgb_to_hex(int red, int green, int blue)
 {
