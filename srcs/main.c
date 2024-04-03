@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 22:13:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:55:00 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	game_loop(void *data)
 	img.addr = mlx_get_data_addr(data_ptr->img, &img.bpp, &img.line_length, &img.endian);
 
 	render_background(data_ptr, &img);
-	movements(data_ptr);
 
+	movements(data_ptr);
 	cast_all_rays(data_ptr);
 
+	render_projection(data_ptr, &img);
 	render_minimap(data_ptr, &img);
 	render_player(data_ptr, &img);
+	render_rays(data_ptr, &img);
 
 	mlx_put_image_to_window(data_ptr->mlx.mlx_ptr, data_ptr->mlx.mlx_win, data_ptr->img, 0, 0);
 	mlx_destroy_image(data_ptr->mlx.mlx_ptr, data_ptr->img);

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:36:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 19:11:09 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:47:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,25 +130,6 @@ static void draw_line(t_img *img, int x0, int y0, int x1, int y1, int color)
     }
 }
 
-// void render_player(t_data *data, t_img *img)
-// {
-// 	int	color;
-
-// 	color = 0xFE0000;
-// 	int player_x_pix;
-// 	int player_y_pix;
-// 	int	end_x;
-// 	int	end_y;
-
-// 	player_x_pix = data->player.x * MINIMAP_SCALE;
-// 	player_y_pix = data->player.y * MINIMAP_SCALE;
-// 	render_cells(img, player_x_pix, player_y_pix, color, data->player.width * MINIMAP_SCALE);
-
-// 	end_x = MINIMAP_SCALE * data->player.x + cos(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
-// 	end_y = MINIMAP_SCALE * data->player.y + sin(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
-// 	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, color);
-
-// }
 
 void render_player(t_data *data, t_img *img)
 {
@@ -158,8 +139,8 @@ void render_player(t_data *data, t_img *img)
 	float	end_y;
 
 
-	int	x_cell_scale = WIN_WIDTH / data->width;
-	int y_cell_scale = WIN_HEIGHT / data->height;
+	float	x_cell_scale = WIN_WIDTH / data->width;
+	float y_cell_scale = WIN_HEIGHT / data->height;
 
 	float player_pos_x = data->player.x / TILE_SIZE;
 	float player_pos_y = data->player.y / TILE_SIZE;
@@ -167,11 +148,45 @@ void render_player(t_data *data, t_img *img)
 	player_x_pix = ((player_pos_x * x_cell_scale)) * MINIMAP_SCALE;
 	player_y_pix = ((player_pos_y * y_cell_scale)) * MINIMAP_SCALE;
 
-	render_grid_cells(img, player_x_pix, player_y_pix, 0xFE0000, 10 * MINIMAP_SCALE, 10 * MINIMAP_SCALE);
+	render_grid_cells(img, player_x_pix - (data->player.width / 2 * MINIMAP_SCALE), player_y_pix - (data->player.height / 2 * MINIMAP_SCALE), 0xFE0000, 10 * MINIMAP_SCALE, 10 * MINIMAP_SCALE);
 
 
 	end_x = player_x_pix + cos(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
 	end_y = player_y_pix + sin(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
 	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, 0xFE0000);
 
+}
+
+void render_rays(t_data *data, t_img *img)
+{
+   // Convertir la position du joueur en coordonnées de la minimap
+    float player_x_pix = (data->player.x / TILE_SIZE) * (WIN_WIDTH / data->width) * MINIMAP_SCALE;
+    float player_y_pix = (data->player.y / TILE_SIZE) * (WIN_HEIGHT / data->height) * MINIMAP_SCALE;
+
+	//float scale_factor_x = (WIN_WIDTH / data->width) * MINIMAP_SCALE / TILE_SIZE;
+   // float scale_factor_y = (WIN_HEIGHT / data->height) * MINIMAP_SCALE / TILE_SIZE;
+
+    // Calculer la direction de la ligne à 30 degrés par rapport à l'angle du joueur
+	int	i = 0;
+	float ray_angle = 0;
+	float ray_dir_x = 0;
+    float ray_dir_y = 0;
+	while (i < NUM_RAYS)
+	{
+    	ray_angle = data->rays[i].ray_angle;
+    	ray_dir_x = cos(ray_angle);
+    	ray_dir_y = sin(ray_angle);
+
+    // Définir une longueur arbitraire pour la ligne
+   		 float line_length = data->rays[i].distance;
+
+
+    // Ajuster les coordonnées de fin de la ligne à l'échelle de la minimap
+    	float end_x = player_x_pix + ray_dir_x * (line_length * MINIMAP_SCALE);
+    	float end_y = player_y_pix + ray_dir_y * (line_length * MINIMAP_SCALE);
+
+    // Dessiner la ligne à 30 degrés
+    	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, 0xFE0000);
+		i++;
+	}
 }

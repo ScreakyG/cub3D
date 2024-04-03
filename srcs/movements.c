@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:38:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 22:39:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:12:23 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 bool wall_colision(t_data *data, float x_step , float y_step)
 {
-	int	x;
-	int y;
+	float x_world = data->width * TILE_SIZE;
+	float y_world = data->height * TILE_SIZE;
+	int	x_grid;
+	int y_grid;
 
-	x = floor(x_step / TILE_SIZE);
-	y = floor(y_step / TILE_SIZE);
-	if (x_step < 0 || x_step > WIN_WIDTH || y_step < 0 || y_step > WIN_HEIGHT)
+	if (x_step < 0 || x_step > x_world || y_step < 0 || y_step > y_world) // PEUT ETRE ENLEVER WIDTH ET HEIGHT
 		return (true);
-	if (data->map_grid[y][x] == '1')
+	x_grid = floor(x_step / TILE_SIZE);
+	y_grid = floor(y_step / TILE_SIZE);
+	if (y_grid >= data->height || x_grid >= data->width)
+		return (true);
+	if (data->map_grid[y_grid][x_grid] == '1')
 		return (true);
 	else
 		return (false);
@@ -36,7 +40,7 @@ void movements(t_data *data)
 	move_x = data->player.x;
 	move_y = data->player.y;
 	data->player.rotation_angle += data->player.rotation_direction * data->player.turn_speed;
-	data->player.rotation_angle = normalize_angle(data->player.rotation_angle);
+	data->player.rotation_angle = normalize_angle(data->player.rotation_angle); //May remove
 	if (data->player.walk_direction == 1 || data->player.walk_direction == -1)
 	{
 		move_step = data->player.walk_direction * data->player.walk_speed;

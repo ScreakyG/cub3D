@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 22:23:11 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 22:15:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:26:56 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void init_player(t_data *data)
 	data->player.fov_rd = FOV * (M_PI / 180);
 	data->map.player_pos_x = get_player_pos(data, 'x');
 	data->map.player_pos_y = get_player_pos(data, 'y');
-	data->player.x = data->map.player_pos_x * TILE_SIZE;//+ TILE_SIZE / 2;
-	data->player.y = data->map.player_pos_y * TILE_SIZE;// + TILE_SIZE / 2;
-	data->player.width = 5;
-	data->player.height = 5;
+	data->player.x = data->map.player_pos_x * TILE_SIZE;
+	data->player.y = data->map.player_pos_y * TILE_SIZE;
+	data->player.width = 10;
+	data->player.height = 10;
 
 	data->player.side_direction = 0;
 	data->player.walk_direction = 0;

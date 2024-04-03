@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/01 20:59:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:17:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
-# define WIN_WIDTH 1500
-# define WIN_HEIGHT 800
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 
- #ifndef M_PI
-	# define M_PI 3.13159265
- #endif
-# define TWO_PI 6.28318530
+//  #ifndef M_PI
+//   # define M_PI 3.13159265
+//  #endif
+// # define TWO_PI 6.28318530
 
-# define MINIMAP_SCALE 1
+# define MINIMAP_SCALE 0.2
 
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define FOV 60
 # define NUM_RAYS WIN_WIDTH
 
@@ -96,7 +96,7 @@ typedef struct s_data
 	t_img	*img;
 	t_player player;
 	t_map	map;
-	t_ray	*rays;
+	t_ray	rays[NUM_RAYS];
 	char **map_tab;
 	char **map_grid;
 	int		idx_map_start;
@@ -174,6 +174,9 @@ void init_ray_directions(t_ray *ray);
 float get_distance(float x1, float y1, float x2, float y2);
 void init_ray(t_ray *ray);
 bool map_has_wall_hat(float x, float y, t_data *data);
+void get_horizontal_inter(t_ray *ray, t_data *data);
+void get_vertical_inter(t_ray *ray, t_data *data);
+void print_debug_rays(t_ray *ray);
 
 ////// RENDER FUNCTIONS ////////
 
@@ -181,6 +184,11 @@ void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void render_background(t_data *data, t_img *img);
 void render_minimap(t_data *data, t_img *img);
 void render_player(t_data *data, t_img *img);
+void render_rays(t_data *data, t_img *img);
+
+//// PROJECTION FUNCTIONS /////
+
+void render_projection(t_data *data, t_img *img);
 
 /////// UTILS FUNCTIONS ///////
 
