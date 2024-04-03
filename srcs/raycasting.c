@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 19:13:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 19:58:43 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:56:41 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void cast_ray(t_ray *ray, t_data *data)
 		{
 			horz_wall_hit_x = next_horz_touch_x;
 			horz_wall_hit_y = next_horz_touch_y;
-			horz_wall_content = data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
+			horz_wall_content = data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)]; // genere des segfaults
 			found_horz_wall_hit = true;
 			break ;
 		}
@@ -166,7 +166,7 @@ void cast_ray(t_ray *ray, t_data *data)
 		{
 			vert_wall_hit_x = next_vert_touch_x;
 			vert_wall_hit_y = next_vert_touch_y;
-			vert_wall_content = data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
+			vert_wall_content = data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)]; // Genere des segfaults.
 			found_vert_wall_hit = true;
 			break ;
 		}

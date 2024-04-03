@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:38:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 20:12:23 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:53:49 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool wall_colision(t_data *data, float x_step , float y_step)
 	int	x_grid;
 	int y_grid;
 
-	if (x_step < 0 || x_step > x_world || y_step < 0 || y_step > y_world) // PEUT ETRE ENLEVER WIDTH ET HEIGHT
+	if (x_step < 0 || x_step > x_world || y_step < 0 || y_step > y_world)
 		return (true);
 	x_grid = floor(x_step / TILE_SIZE);
 	y_grid = floor(y_step / TILE_SIZE);
