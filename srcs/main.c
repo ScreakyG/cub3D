@@ -6,13 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 19:55:00 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:30:58 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-
 
 int	game_loop(void *data)
 {
@@ -31,8 +29,8 @@ int	game_loop(void *data)
 
 	render_projection(data_ptr, &img);
 	render_minimap(data_ptr, &img);
-	render_player(data_ptr, &img);
 	render_rays(data_ptr, &img);
+	render_player(data_ptr, &img);
 
 	mlx_put_image_to_window(data_ptr->mlx.mlx_ptr, data_ptr->mlx.mlx_win, data_ptr->img, 0, 0);
 	mlx_destroy_image(data_ptr->mlx.mlx_ptr, data_ptr->img);

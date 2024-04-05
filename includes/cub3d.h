@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 20:17:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:56:29 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ bool map_has_wall_hat(float x, float y, t_data *data);
 void get_horizontal_inter(t_ray *ray, t_data *data);
 void get_vertical_inter(t_ray *ray, t_data *data);
 void print_debug_rays(t_ray *ray);
+int get_cell_content(t_data *data,float x, float y);
 
 ////// RENDER FUNCTIONS ////////
 

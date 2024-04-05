@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:38:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 21:53:49 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:41:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ bool wall_colision(t_data *data, float x_step , float y_step)
 		return (true);
 	else
 		return (false);
+}
+
+static bool movement_colision(t_data *data, float move_x, float move_y)
+{
+	int	x_grid;
+	int y_grid;
+
+	if (move_x < 0 || move_y < 0)
+		return (true);
+	x_grid = floor(move_x / TILE_SIZE);
+	y_grid = floor(move_y / TILE_SIZE);
+	if (x_grid >= data->width || y_grid >= data->height)
+		return (true);
+	if (data->map_grid[y_grid][x_grid] != '1' && (data->map_grid[y_grid][(int)data->player.x / TILE_SIZE] != '1' && data->map_grid[(int)data->player.y / TILE_SIZE][x_grid] != '1'))
+		return (false);
+	else
+		return (true);
 }
 
 void movements(t_data *data)
@@ -57,7 +74,7 @@ void movements(t_data *data)
 		move_x = data->player.x + sin(data->player.rotation_angle) * data->player.walk_speed;
 		move_y = data->player.y + -cos(data->player.rotation_angle) * data->player.walk_speed;
 	}
-	if (!wall_colision(data, move_x, move_y))
+	if (!movement_colision(data, move_x, move_y))
 	{
 		data->player.x = move_x;
 		data->player.y = move_y;

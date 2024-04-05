@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:36:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 18:47:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:19:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void render_player(t_data *data, t_img *img)
 
 	end_x = player_x_pix + cos(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
 	end_y = player_y_pix + sin(data->player.rotation_angle) * (40 * MINIMAP_SCALE);
-	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, 0xFE0000);
+	draw_line(img, player_x_pix, player_y_pix, end_x, end_y, 0xF5F5F5FF);
 
 }
 

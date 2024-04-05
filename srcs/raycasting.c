@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 19:13:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 21:56:41 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:17:18 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,21 @@ float normalize_angle(float ray_angle)
 
 float get_distance(float x1, float y1, float x2, float y2)
 {
-	//return (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+int get_cell_content(t_data *data,float x, float y)
+{
+	int y_grid;
+	int x_grid;
+
+	y_grid = floor(y / TILE_SIZE);
+	x_grid = floor (x / TILE_SIZE);
+	if (data->map_grid[y_grid] && data->map_grid[y_grid][x_grid])
+		return (data->map_grid[y_grid][x_grid]);
+	else
+		return ('1');
+
 }
 
 void init_ray(t_ray *ray)
@@ -112,7 +125,7 @@ void cast_ray(t_ray *ray, t_data *data)
 		{
 			horz_wall_hit_x = next_horz_touch_x;
 			horz_wall_hit_y = next_horz_touch_y;
-			horz_wall_content = data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)]; // genere des segfaults
+			horz_wall_content = get_cell_content(data, x_to_check, y_to_check);//data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)]; // genere des segfaults
 			found_horz_wall_hit = true;
 			break ;
 		}
@@ -166,7 +179,7 @@ void cast_ray(t_ray *ray, t_data *data)
 		{
 			vert_wall_hit_x = next_vert_touch_x;
 			vert_wall_hit_y = next_vert_touch_y;
-			vert_wall_content = data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)]; // Genere des segfaults.
+			vert_wall_content = get_cell_content(data, x_to_check, y_to_check);//data->map_grid[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)]; // Genere des segfaults.
 			found_vert_wall_hit = true;
 			break ;
 		}
