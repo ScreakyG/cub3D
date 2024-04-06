@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/04 20:30:58 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/06 21:29:21 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	game_loop(void *data)
 
 	img.addr = mlx_get_data_addr(data_ptr->img, &img.bpp, &img.line_length, &img.endian);
 
-	render_background(data_ptr, &img);
+	//render_background(data_ptr, &img);
 
 	movements(data_ptr);
 	cast_all_rays(data_ptr);
@@ -52,13 +52,11 @@ int main(int argc, char **argv)
 	data = (t_data){0};
 	check_map_validity(argc, argv, &data); // choses a verifier.
 	//verifier la resolution, le fov , speed , la position du joueur.
+
+	init_mlx(&data);
 	init_textures(&data);
 	init_player(&data);
 
-	//print_grid(&data);
-
-	init_mlx(&data);
-
+	//textures_test(&data);
 	start_game(&data);
-	//clean_exit(&data);
 }

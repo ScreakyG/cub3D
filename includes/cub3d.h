@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/04 19:56:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/06 22:33:06 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdbool.h>
+# include <stdint.h>
 # include <fcntl.h>
 # include <errno.h>
 # include <math.h>
@@ -26,8 +27,8 @@
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 640
 
 //  #ifndef M_PI
 //   # define M_PI 3.13159265
@@ -39,6 +40,16 @@
 # define TILE_SIZE 64
 # define FOV 60
 # define NUM_RAYS WIN_WIDTH
+
+# define TEXTURE_SIZE 64
+
+enum e_texture_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
 
 typedef struct s_ray
 {
@@ -111,12 +122,16 @@ typedef struct s_data
 	char	*c;
 	int		f_hex;
 	int		c_hex;
+	uint32_t *wall_texture_test;
+	int		**textures;
+	int		tex_size;
 }	t_data;
 
 /////// FREE FUNCTIONS ///////
 
 void ft_exit_error(char *msg, int exit_code, t_data *data);
 void clean_exit(t_data *data);
+void free_textures(t_data *data);
 
 
 /////// CHECK MAP FUNCTIONS ///////
@@ -207,5 +222,9 @@ void error_identifier_name(char *identifier, t_data *data);
 void error_identifier_value(char *identifier, t_data *data);
 int	get_player_pos(t_data *data, char axis);
 bool wall_colision(t_data *data, float x_step , float y_step);
+
+//TEXUTRES TEST FUNCTIONS//
+
+void textures_test(t_data *data);
 
 #endif

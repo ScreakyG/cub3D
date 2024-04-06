@@ -1,9 +1,9 @@
 
 
-NO ./textures/color_stone.xpm
+NO ./textures/blue_stone.xpm
 SO ./textures/color_stone.xpm
-WE ./textures/eagle.xpm
-EA ./textures/mossy.xpm
+WE ./textures/grey_stone.xpm
+EA ./textures/eagle.xpm
 
 F 114,96,84
 C 99,184,255

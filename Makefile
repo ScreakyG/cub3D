@@ -14,7 +14,7 @@ EOC = \033[0m
 
 
 SRCS_DIR = srcs/
-SRCS_FILES = main.c map_check.c free.c utils.c parse_map.c parse_identifiers.c create_grid.c init_textures.c init_mlx.c textures_check.c keybinds.c render.c init_player.c movements.c raycasting.c projection.c
+SRCS_FILES = main.c map_check.c free.c utils.c parse_map.c parse_identifiers.c create_grid.c init_textures.c init_mlx.c textures_check.c keybinds.c render.c init_player.c movements.c raycasting.c projection.c textures_test.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 SRCS_OBJS = $(SRCS:.c=.o)
 

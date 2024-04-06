@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/03/25 22:58:26 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/06 03:17:22 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void free_identifiers(t_data *data)
 		free(data->we);
 }
 
+void free_textures(t_data *data)
+{
+	if (data->textures)
+		free_strs((char **)data->textures);
+}
+
 void ft_exit_error(char *msg, int exit_code, t_data *data)
 {
 	printf("Error\n");
@@ -54,6 +60,7 @@ void ft_exit_error(char *msg, int exit_code, t_data *data)
 		if (data->map_grid)
 			free_strs(data->map_grid);
 		free_identifiers(data);
+		free_textures(data);
 		if (data->mlx.mlx_win)
 			mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
 		if (data->mlx.mlx_ptr)
@@ -75,6 +82,7 @@ void clean_exit(t_data *data)
 		if (data->map_grid)
 			free_strs(data->map_grid);
 		free_identifiers(data);
+		free_textures(data);
 		if (data->mlx.mlx_win)
 			mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
 		if (data->mlx.mlx_ptr)
