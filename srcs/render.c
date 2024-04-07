@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:36:02 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/04 19:19:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 06:33:02 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,6 @@ void render_background(t_data *data, t_img *img)
 		y++;
 	}
 }
-
-// static void render_cells(t_img *img, int pos_x, int pos_y, int color, float scale_factor)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (i < scale_factor)
-// 	{
-// 		j = 0;
-// 		while (j < scale_factor)
-// 		{
-// 			my_mlx_pixel_put(img, pos_x + j, pos_y + i, color);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 static void render_grid_cells(t_img *img, int pos_x, int pos_y, int color, float x_scale, float y_scale)
 {

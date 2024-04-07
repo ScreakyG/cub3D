@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/07 06:21:40 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:50:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
-# define WIN_WIDTH 1600
+# define WIN_WIDTH 1800
 # define WIN_HEIGHT 900
 
 # define MINIMAP_SCALE 0.2

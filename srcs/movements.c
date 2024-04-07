@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:38:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/06 21:25:30 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 06:41:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool movement_colision(t_data *data, float move_x, float move_y)
 	int	x_grid;
 	int y_grid;
 
-	if (move_x < 0 || move_y < 0)
+	if (move_x < 0 || move_y < 0 || move_x > data->width * TILE_SIZE || move_y > data->width * TILE_SIZE)
 		return (true);
 	x_grid = floor(move_x / TILE_SIZE);
 	y_grid = floor(move_y / TILE_SIZE);

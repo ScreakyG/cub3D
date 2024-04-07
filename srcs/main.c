@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/07 02:04:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 08:24:19 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ int main(int argc, char **argv)
 	init_textures(&data);
 	init_player(&data);
 
-	//textures_test(&data);
 	start_game(&data);
 }
