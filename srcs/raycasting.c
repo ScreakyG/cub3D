@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 19:13:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/04 20:17:18 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 06:18:19 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,13 +230,14 @@ void cast_all_rays(t_data *data)
 	float ray_angle;
 
 	strip_id = 0;
-	ray_angle = data->player.rotation_angle - (data->player.fov_rd / 2);
+	//ray_angle = data->player.rotation_angle - (data->player.fov_rd / 2);
 	while (strip_id < NUM_RAYS)
 	{
+		ray_angle = data->player.rotation_angle + atan((strip_id - NUM_RAYS / 2) / data->dist_plane);
 		data->rays[strip_id].ray_angle = ray_angle;
 		cast_ray(&data->rays[strip_id], data);
 		//print_debug_rays(&data->rays[strip_id]);
 		strip_id++;
-		ray_angle += (data->player.fov_rd / NUM_RAYS);
+		//ray_angle += (data->player.fov_rd / NUM_RAYS);
 	}
 }

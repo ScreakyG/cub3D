@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 22:23:11 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/03 17:26:56 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 06:07:44 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void remove_position_in_grid(char **map_grid)
 void init_player(t_data *data)
 {
 	data->player.fov_rd = FOV * (M_PI / 180);
+	data->dist_plane = (WIN_WIDTH / 2) / tan(data->player.fov_rd / 2);
 	data->map.player_pos_x = get_player_pos(data, 'x');
 	data->map.player_pos_y = get_player_pos(data, 'y');
 	data->player.x = data->map.player_pos_x * TILE_SIZE;

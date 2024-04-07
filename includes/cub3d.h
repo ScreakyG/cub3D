@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/07 02:50:18 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 06:21:40 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,14 @@
 # include "../libft/libft.h"
 # include "../includes/Color.h"
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 640
-
-//  #ifndef M_PI
-//   # define M_PI 3.13159265
-//  #endif
-// # define TWO_PI 6.28318530
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 900
 
 # define MINIMAP_SCALE 0.2
 
 # define TILE_SIZE 64
-# define FOV 60
+# define FOV 90
 # define NUM_RAYS WIN_WIDTH
-
-# define TEXTURE_SIZE 64
 
 enum e_texture_index
 {
@@ -130,7 +123,7 @@ typedef struct s_data
 	char	*c;
 	int		f_hex;
 	int		c_hex;
-	uint32_t *wall_texture_test;
+	float	dist_plane;
 }	t_data;
 
 /////// FREE FUNCTIONS ///////
@@ -228,9 +221,5 @@ void error_identifier_name(char *identifier, t_data *data);
 void error_identifier_value(char *identifier, t_data *data);
 int	get_player_pos(t_data *data, char axis);
 bool wall_colision(t_data *data, float x_step , float y_step);
-
-//TEXUTRES TEST FUNCTIONS//
-
-void textures_test(t_data *data);
 
 #endif

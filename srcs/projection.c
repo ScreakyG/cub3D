@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:58:22 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/07 02:48:55 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 06:17:03 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void render_projection(t_data *data, t_img *img)
 	{
 		corrected_angle = normalize_angle(data->rays[ray_idx].ray_angle - data->player.rotation_angle);
 		data->rays[ray_idx].distance *= cos(corrected_angle);
-		wall_h = (TILE_SIZE / data->rays[ray_idx].distance) * ((WIN_WIDTH / 2) / tan(data->player.fov_rd / 2));
+		wall_h = (TILE_SIZE / data->rays[ray_idx].distance) * data->dist_plane;
 		bottom_pixel = (WIN_HEIGHT / 2) + (wall_h / 2);
 		top_pixel = (WIN_HEIGHT / 2) - (wall_h / 2);
 		if (bottom_pixel > WIN_HEIGHT)
