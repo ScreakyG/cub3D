@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/06 22:33:06 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 02:50:18 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ enum e_texture_index
 	EAST = 2,
 	WEST = 3
 };
+
+typedef struct s_texture
+{
+	int *color_buffer;
+	int	width;
+	int	height;
+} t_texture;
 
 typedef struct s_ray
 {
@@ -108,6 +115,7 @@ typedef struct s_data
 	t_player player;
 	t_map	map;
 	t_ray	rays[NUM_RAYS];
+	t_texture *textures;
 	char **map_tab;
 	char **map_grid;
 	int		idx_map_start;
@@ -123,8 +131,6 @@ typedef struct s_data
 	int		f_hex;
 	int		c_hex;
 	uint32_t *wall_texture_test;
-	int		**textures;
-	int		tex_size;
 }	t_data;
 
 /////// FREE FUNCTIONS ///////

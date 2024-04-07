@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:58:22 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/06 09:08:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 02:48:55 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ static void draw_wall(t_img *img, int ray_nbr, int t_pix, int b_pix, t_data *dat
 	// Calculate textureOffsetX
 	if (data->rays[ray_nbr].was_hit_vertical)
 		// Perform offset for the vertical hit
-		textureOffsetX = (int)data->rays[ray_nbr].wall_hit_y % TILE_SIZE;
+		textureOffsetX = ((float)((int)data->rays[ray_nbr].wall_hit_y % TILE_SIZE) / TILE_SIZE) * data->textures[direction].width;
 	else
 		// Perform offset for the horizontal hit
-		textureOffsetX = (int)data->rays[ray_nbr].wall_hit_x % TILE_SIZE;
+		textureOffsetX = ((float)((int)data->rays[ray_nbr].wall_hit_x % TILE_SIZE) / TILE_SIZE) * data->textures[direction].width;
 	while (y < b_pix) // Draw wall
 	{
 		// Calculate textureOffsetY
 		int distanceFromTop = y + (wall_h / 2) - (WIN_HEIGHT / 2);
-		textureOffsetY = distanceFromTop * ((float)TEXTURE_SIZE / wall_h);
-		wall_color = data->textures[direction][(TEXTURE_SIZE * textureOffsetY) + textureOffsetX];
+		textureOffsetY = distanceFromTop * ((float)data->textures[direction].height / wall_h);
+		wall_color = data->textures[direction].color_buffer[(data->textures[direction].width * textureOffsetY) + textureOffsetX];
 		my_mlx_pixel_put(img, ray_nbr, y++, wall_color);
 	}
 }

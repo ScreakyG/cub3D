@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/06 03:17:22 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 02:09:39 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,19 @@ void free_identifiers(t_data *data)
 
 void free_textures(t_data *data)
 {
+	int i;
+
+	i = 0;
 	if (data->textures)
-		free_strs((char **)data->textures);
+	{
+		while (i < 5)
+		{
+			if (data->textures[i].color_buffer)
+				free(data->textures[i].color_buffer);
+			i++;
+		}
+		free(data->textures);
+	};
 }
 
 void ft_exit_error(char *msg, int exit_code, t_data *data)
