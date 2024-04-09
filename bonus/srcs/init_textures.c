@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:02:40 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/07 02:12:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:48:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int *convert_xpm_to_img(t_data *data, char *path, t_texture *texture)
 	if (temp.img == NULL)
 		ft_exit_error("Error texture file\n", 1, data);
 	addr = (int *)mlx_get_data_addr(temp.img, &temp.bpp, &temp.line_length, &temp.endian);
-
-	printf("File = %s, Texture height = %d\n", path, texture->height);
-	printf("File = %s, Texture width = %d\n", path, texture->width);
-
 	color_buffer = malloc(sizeof(int) * (texture->width * texture->height));
 	if (!color_buffer)
 		ft_exit_error("Error texture file\n", 1, data);
