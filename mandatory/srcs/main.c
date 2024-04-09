@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/09 17:46:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:11:31 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	start_game(t_data *data)
 	mlx_hook(data->mlx.mlx_win, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->mlx.mlx_win, KeyRelease,
 		KeyReleaseMask, &handle_keyrelease, data);
+	mlx_hook(data->mlx.mlx_win, DestroyNotify, 0, &clean_exit, data);
 	mlx_loop(data->mlx.mlx_ptr);
 }
 

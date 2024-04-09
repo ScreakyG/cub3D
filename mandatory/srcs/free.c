@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:28 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/08 04:38:57 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:10:14 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_exit_error(char *msg, int exit_code, t_data *data)
 	exit(exit_code);
 }
 
-void	clean_exit(t_data *data)
+int	clean_exit(t_data *data)
 {
 	printf(GREEN"Exiting cub3D and cleaning memory\n"RESET);
 	if (data)

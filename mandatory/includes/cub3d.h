@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/09 00:46:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:10:33 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MINIMAP_SCALE 0.2
 
 # define TILE_SIZE 64
-# define FOV 90
+# define FOV 60
 # define NUM_RAYS WIN_WIDTH
 
 enum e_texture_index
@@ -129,7 +129,7 @@ typedef struct s_data
 /////// FREE FUNCTIONS ///////
 
 void	ft_exit_error(char *msg, int exit_code, t_data *data);
-void	clean_exit(t_data *data);
+int		clean_exit(t_data *data);
 void	free_textures(t_data *data);
 
 /////// CHECK MAP FUNCTIONS ///////
