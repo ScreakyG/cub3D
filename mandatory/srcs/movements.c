@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:38:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/09 06:23:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:45:25 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	movements(t_data *data)
 	float	move_y;
 	float	rot_dir;
 
+	move_x = data->player.x;
+	move_y = data->player.y;
 	rot_dir = data->player.rotation_direction;
 	data->player.rotation_angle += rot_dir * data->player.turn_speed;
 	data->player.rotation_angle = normalize_angle(data->player.rotation_angle);
