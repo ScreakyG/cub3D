@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 19:25:53 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/14 22:02:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/14 22:32:57 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 bool	word_is_identifier(char *word, t_data *data)
 {
-	char	*identifier[6] = {"NO", "SO", "WE", "EA", "F", "C"};
+	char	*identifier[6];
 	int		i;
 
 	i = 0;
+	identifier[0] = "NO";
+	identifier[1] = "SO";
+	identifier[2] = "WE";
+	identifier[3] = "EA";
+	identifier[4] = "F";
+	identifier[5] = "C";
 	if (!word)
 		return (false);
 	while (i < 6)
