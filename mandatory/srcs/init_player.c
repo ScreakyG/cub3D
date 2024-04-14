@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 22:23:11 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/13 02:36:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/14 16:53:11 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void	init_player(t_data *data)
 	data->player.walk_speed = 2;
 	data->player.turn_speed = 2 * (M_PI / 180);
 	remove_position_in_grid(data->map_grid);
+	data->height_world = data->height * TILE_SIZE;
+	data->width_world = data->width * TILE_SIZE;
 }

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/13 02:45:07 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:37:36 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ enum e_texture_index
 	EAST = 2,
 	WEST = 3
 };
+
+typedef struct s_ray_inter
+{
+	float	x_intercept;
+	float	y_intercept;
+	float	x_step;
+	float	y_step;
+	int		found_wall_hit;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	int		wall_content;
+	float	next_touch_x;
+	float	next_touch_y;
+	float	x_to_check;
+	float	y_to_check;
+	float	distance;
+}	t_ray_inter;
 
 typedef struct s_texture
 {
@@ -125,6 +142,8 @@ typedef struct s_data
 	int			idx_map_end;
 	int			height;
 	int			width;
+	float		width_world;
+	float		height_world;
 	char		*no;
 	char		*so;
 	char		*we;
@@ -194,17 +213,23 @@ void	movements(t_data *data);
 
 ////// RAYCASTING FUNCTIONS ////////
 
-void	cast_all_rays(t_data *data);
-void	cast_ray(t_ray *ray, t_data *data);
-float	normalize_angle(float ray_angle);
-void	init_ray_directions(t_ray *ray);
-float	get_distance(float x1, float y1, float x2, float y2);
-void	init_ray(t_ray *ray);
-bool	map_has_wall_hat(float x, float y, t_data *data);
-void	get_horizontal_inter(t_ray *ray, t_data *data);
-void	get_vertical_inter(t_ray *ray, t_data *data);
-void	print_debug_rays(t_ray *ray);
-int		get_cell_content(t_data *data, float x, float y);
+void		cast_all_rays(t_data *data);
+void		cast_ray(t_ray *ray, t_data *data);
+float		normalize_angle(float ray_angle);
+void		init_ray_directions(t_ray *ray);
+float		get_distance(float x1, float y1, float x2, float y2);
+void		init_ray(t_ray *ray);
+bool		map_has_wall_hat(float x, float y, t_data *data);
+void		print_debug_rays(t_ray *ray);
+int			get_cell_content(t_data *data, float x, float y);
+t_ray_inter	get_h_inter(t_data *data, t_ray *ray);
+t_ray_inter	get_v_inter(t_data *data, t_ray *ray);
+void		get_x_y_step(t_ray *ray, t_ray_inter *r, int horz);
+void		get_intercepts(t_data *data, t_ray *ray, t_ray_inter *r, int horz);
+void		init_ray_inter(t_ray_inter *r);
+int			pixel_force(t_ray *ray, bool horz);
+void		fill_values(t_data *data, t_ray_inter *r);
+void		fill_ray_values(t_ray *ray, t_ray_inter *r, bool vert_hit);
 
 ////// RENDER FUNCTIONS ////////
 
