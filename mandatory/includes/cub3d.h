@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/09 18:10:33 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/13 02:45:07 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,15 @@ typedef struct s_mlx
 	void	*mlx_win;
 }	t_mlx;
 
+typedef struct s_render
+{
+	float		top_pixel;
+	float		bot_pixel;
+	float		wall_h;
+	int			ray_idx;
+}	t_render;
+
+
 typedef struct s_data
 {
 	t_mlx		mlx;
@@ -109,6 +118,7 @@ typedef struct s_data
 	t_map		map;
 	t_ray		rays[NUM_RAYS];
 	t_texture	*textures;
+	t_render	render;
 	char		**map_tab;
 	char		**map_grid;
 	int			idx_map_start;
