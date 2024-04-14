@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 15:25:04 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/09 01:58:39 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/14 20:20:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	check_map_validity(int argc, char **argv, t_data *data)
 	check_file_extension(argv);
 	get_map(argv[1], data);
 	parse_identifiers(data);
+	if (enough_identifiers(data) == false)
+		ft_exit_error("You need to define SO, NO, WE, EA, F and C", 1, data);
 	parse_map(data);
 	if (get_player_number(data) != 1)
 		ft_exit_error("There should be one player in the map", 1, data);

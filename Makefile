@@ -12,7 +12,7 @@ EOC = \033[0m
 
 ##### MANDATORY FILES ####
 SRCS_DIR = mandatory/srcs/
-SRCS_FILES = main.c map_check.c free.c utils.c parse_map.c parse_identifiers.c create_grid.c init_textures.c init_mlx.c textures_check.c keybinds.c render.c init_player.c movements.c raycasting.c projection.c parse_map_utils.c raycasting_utils.c raycasting_utils2.c raycasting_utils3.c utils2.c utils3.c
+SRCS_FILES = main.c map_check.c free.c utils.c parse_map.c parse_identifiers.c create_grid.c init_textures.c init_mlx.c textures_check.c keybinds.c render.c init_player.c movements.c raycasting.c projection.c parse_map_utils.c raycasting_utils.c raycasting_utils2.c raycasting_utils3.c utils2.c utils3.c parse_identifiers_utils.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 SRCS_OBJS = $(SRCS:.c=.o)
 

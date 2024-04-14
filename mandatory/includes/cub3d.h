@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/14 19:37:36 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:33:08 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,12 @@ void	verify_textures(t_data *data);
 
 void	parse_identifiers(t_data *data);
 bool	enough_identifiers(t_data *data);
+void	add_value_to_identifier(char *value, char *identifier, t_data *data);
+void	get_identifier_value(t_data *data, char **map_tab,
+			int value_start, char *identifier);
+bool	word_is_identifier(char *word, t_data *data);
+bool	fill_identifier(t_data *data, char *identifier, char *value);
+char	*get_identifier_name(t_data *data, char **map_tab, int *j);
 
 /////// PARSE MAP FUNCTIONS ///////
 
