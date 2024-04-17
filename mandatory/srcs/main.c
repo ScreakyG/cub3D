@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:58:38 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/09 18:11:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/18 01:37:22 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int argc, char **argv)
 	data = (t_data){0};
 	check_map_validity(argc, argv, &data); // choses a verifier.
 	//verifier la resolution, le fov , speed , la position du joueur.
+	if (FOV < 20 || FOV > 120)
+		ft_exit_error("FOV Recommended between 60-110", 1, &data);
 	init_mlx(&data);
 	init_textures(&data);
 	init_player(&data);
