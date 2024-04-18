@@ -1,6 +1,6 @@
 
 	               
-NO ./textures/blue_stone.xpm
+NO ./textures/gentle_mates2.xpm
 SO ./textures/color_stone.xpm
 WE ./textures/grey_stone.xpm
 EA ./textures/eagle.xpm
@@ -8,13 +8,8 @@ EA ./textures/eagle.xpm
 F 114,96,84
 C 99,184,255
 
-1111111111
-1000000001
-1000S00001
-1000001001
-1000000101
-1000000001
-1000000001
-1000000001
-1000000001
-1111111111
+1111111
+1000001
+100000111
+10000N001
+1111111

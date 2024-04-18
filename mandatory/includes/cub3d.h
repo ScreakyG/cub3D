@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:20:17 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/18 01:37:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:21:29 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ typedef struct s_render
 	int			ray_idx;
 }	t_render;
 
-
 typedef struct s_data
 {
 	t_mlx		mlx;
@@ -157,65 +156,66 @@ typedef struct s_data
 
 /////// FREE FUNCTIONS ///////
 
-void	ft_exit_error(char *msg, int exit_code, t_data *data);
-int		clean_exit(t_data *data);
-void	free_textures(t_data *data);
+void		ft_exit_error(char *msg, int exit_code, t_data *data);
+int			clean_exit(t_data *data);
+void		free_textures(t_data *data);
 
 /////// CHECK MAP FUNCTIONS ///////
 
-void	check_map_validity(int argc, char **argv, t_data *data);
-bool	is_directory(char *filename);
-bool	verify_right_side(t_data *data);
-bool	verify_left_side(t_data *data);
-void	get_map_end_idx(t_data *data);
+void		check_map_validity(int argc, char **argv, t_data *data);
+bool		is_directory(char *filename);
+bool		verify_right_side(t_data *data);
+bool		verify_left_side(t_data *data);
+void		get_map_end_idx(t_data *data);
 
 /////// CHECK TEXTURES FUNCTIONS ///////
 
-void	verify_textures(t_data *data);
+void		verify_textures(t_data *data);
 
 /////// PARSE IDENTIFIERS FUNCTIONS ///////
 
-void	parse_identifiers(t_data *data);
-bool	enough_identifiers(t_data *data);
-void	add_value_to_identifier(char *value, char *identifier, t_data *data);
-void	get_identifier_value(t_data *data, char **map_tab,
-			int value_start, char *identifier);
-bool	word_is_identifier(char *word, t_data *data);
-bool	fill_identifier(t_data *data, char *identifier, char *value);
-char	*get_identifier_name(t_data *data, char **map_tab, int *j);
+void		parse_identifiers(t_data *data);
+bool		enough_identifiers(t_data *data);
+void		add_value_to_identifier(char *value,
+				char *identifier, t_data *data);
+void		get_identifier_value(t_data *data, char **map_tab,
+				int value_start, char *identifier);
+bool		word_is_identifier(char *word, t_data *data);
+bool		fill_identifier(t_data *data, char *identifier, char *value);
+char		*get_identifier_name(t_data *data, char **map_tab, int *j);
 
 /////// PARSE MAP FUNCTIONS ///////
 
-void	parse_map(t_data *data);
-void	skip_white_lines(t_data *data);
-void	check_if_closed_map(t_data *data);
-void	create_map_grid(t_data *data);
+void		parse_map(t_data *data);
+void		skip_white_lines(t_data *data);
+void		check_if_closed_map(t_data *data);
+void		create_map_grid(t_data *data);
 
 /////// INIT TEXTURES FUNCTIONS ///////
 
-void	init_textures(t_data *data);
-int		rgb_to_hex(int red, int green, int blue);
-void	init_floor_ceiling_colors(t_data *data);
-int		*fill_color_buffer(t_texture *texture, int *addr);
+void		init_textures(t_data *data);
+int			rgb_to_hex(int red, int green, int blue);
+void		init_floor_ceiling_colors(t_data *data);
+int			*fill_color_buffer(t_texture *texture, int *addr);
 
 ///// INIT PLAYER FUNCTIONS ///////
 
-void	init_player(t_data *data);
+void		init_player(t_data *data);
 
 /////// INIT MLX FUNCTIONS ///////
 
-void	init_mlx(t_data *data);
+void		init_mlx(t_data *data);
 
 /////// GAME LOOP FUNCTIONS ///////
 
-void	start_game(t_data *data);
-int		game_loop(void *data);
+void		start_game(t_data *data);
+int			game_loop(void *data);
 
 /////// KEYBINDS FUNCTIONS ///////
 
-int		handle_keypress(int keycode, void *data);
-int		handle_keyrelease(int keycode, void *data);
-void	movements(t_data *data);
+int			handle_keypress(int keycode, void *data);
+int			handle_keyrelease(int keycode, void *data);
+void		movements(t_data *data);
 
 ////// RAYCASTING FUNCTIONS ////////
 
@@ -239,32 +239,32 @@ void		fill_ray_values(t_ray *ray, t_ray_inter *r, bool vert_hit);
 
 ////// RENDER FUNCTIONS ////////
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	render_background(t_data *data, t_img *img);
-void	render_minimap(t_data *data, t_img *img);
-void	render_player(t_data *data, t_img *img);
-void	render_rays(t_data *data, t_img *img);
+void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void		render_background(t_data *data, t_img *img);
+void		render_minimap(t_data *data, t_img *img);
+void		render_player(t_data *data, t_img *img);
+void		render_rays(t_data *data, t_img *img);
 
 //// PROJECTION FUNCTIONS /////
 
-void	render_projection(t_data *data, t_img *img);
+void		render_projection(t_data *data, t_img *img);
 
 /////// UTILS FUNCTIONS ///////
 
-int		get_number_lines(char *map_arg);
-void	print_map(t_data *data);
-void	print_identifiers(t_data *data);
-void	free_strs(char **strs);
-int		str_len_skip_ws(char *str);
-void	print_grid(t_data *data);
-int		get_player_number(t_data *data);
-int		tab_len(char **tab);
-bool	only_digit(char *str);
-bool	is_empty(char *str);
-void	error_identifier_name(char *identifier, t_data *data);
-void	error_identifier_value(char *identifier, t_data *data);
-int		get_player_pos(t_data *data, char axis);
-bool	wall_colision(t_data *data, float x_step, float y_step);
-void	init_img(t_img *img);
+int			get_number_lines(char *map_arg);
+void		print_map(t_data *data);
+void		print_identifiers(t_data *data);
+void		free_strs(char **strs);
+int			str_len_skip_ws(char *str);
+void		print_grid(t_data *data);
+int			get_player_number(t_data *data);
+int			tab_len(char **tab);
+bool		only_digit(char *str);
+bool		is_empty(char *str);
+void		error_identifier_name(char *identifier, t_data *data);
+void		error_identifier_value(char *identifier, t_data *data);
+int			get_player_pos(t_data *data, char axis);
+bool		wall_colision(t_data *data, float x_step, float y_step);
+void		init_img(t_img *img);
 
 #endif
