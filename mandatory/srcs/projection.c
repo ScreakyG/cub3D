@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:58:22 by fgonzale          #+#    #+#             */
-/*   Updated: 2024/04/13 03:14:50 by fgonzale         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:02:07 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	draw_wall(t_img *img, int top_pixel, t_data *data)
 			- (WIN_HEIGHT / 2);
 		tex_offset_y = dist_from_top
 			* ((float)data->textures[dir].height / data->render.wall_h);
+		if (tex_offset_y < 0)
+			tex_offset_y = 0;
 		wall_color = data->textures[dir].color_buffer[(data->textures[dir].width
 				* tex_offset_y) + tex_offset_x];
 		my_mlx_pixel_put(img, data->render.ray_idx, top_pixel++, wall_color);
